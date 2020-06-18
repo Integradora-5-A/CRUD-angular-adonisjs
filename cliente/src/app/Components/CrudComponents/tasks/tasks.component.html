@@ -1,0 +1,30 @@
+<div class="row justify-content-center">
+  <div class="col-md-6">
+
+    <form (submit)="add(taskTitle.value); taskTitle.value=''" class="form">
+      <div class="form-group">
+        <input #taskTitle class="form-control" placeholder="Task Name">
+      </div>
+      <input type="submit" value="SUBMIT" class="btn btn-success btn-lg btn-block">
+    </form>
+
+    <table class="table">
+      <tr *ngFor="let task of tasks">
+        <td class="text-left">
+          <a (click)="edit(task)">
+            <span *ngIf="task!==editTask">{{task.task_name}}</span>
+            <input *ngIf="task===editTask" [(ngModel)]="task.task_name" (blur)="update()" (keyup.enter)="update()"/>
+          </a>
+        </td>
+        <td class="text-right">
+          <button class="btn btn-danger" (click)="delete(task)">Delete</button>
+        </td>
+      </tr>
+    </table>
+
+    <div class="card card-body bg-ligth text-center">
+      <span class="small">Click on the iteam to edit and just click anywhere to update</span>
+    </div>
+
+  </div>
+</div>
