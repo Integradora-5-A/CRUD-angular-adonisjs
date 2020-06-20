@@ -1,6 +1,6 @@
 import {BrowserModule} from '@angular/platform-browser';
 import {NgModule} from '@angular/core';
-import {HttpClientModule} from "@angular/common/http";
+import {HTTP_INTERCEPTORS, HttpClientModule} from "@angular/common/http";
 import {FormsModule} from "@angular/forms";
 import {RouterModule, Routes} from "@angular/router";
 
@@ -19,6 +19,7 @@ import {ProfileComponent} from './Components/UserComponents/profile/profile.comp
 import {HomeComponent} from './Components/MasterComponents/home/home.component';
 import {NavbarComponent} from './Components/MasterComponents/navbar/navbar.component';
 import {TasksComponent} from './Components/CrudComponents/tasks/tasks.component';
+import {TokenInterceptorService} from "./services/token-interceptor.service";
 
 
 @NgModule({
@@ -37,7 +38,15 @@ import {TasksComponent} from './Components/CrudComponents/tasks/tasks.component'
     HttpClientModule,
     APP_ROUTING
   ],
-  providers: [Authservice, AuthGuardService, TaskService],
+  providers: [Authservice,
+    AuthGuardService,
+    TaskService,
+    {
+      provide: HTTP_INTERCEPTORS,
+      useClass: TokenInterceptorService,
+      multi: true
+    }
+  ],
   bootstrap: [AppComponent]
 })
 export class AppModule {
