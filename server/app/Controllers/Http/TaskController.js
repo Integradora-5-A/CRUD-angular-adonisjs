@@ -33,8 +33,7 @@ class TaskController {
     if (!task) {
       return response.status(404).json({data: 'data not found'})
     }
-    task.task_name = taskInfo.task_name
-
+    task.task_name = toString(taskInfo.task_name);
     await task.save()
     return response.status(200).json
   }

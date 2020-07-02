@@ -1,6 +1,6 @@
 import {Injectable} from '@angular/core';
 import {HttpClient} from '@angular/common/http';
-import {Observable, of} from 'rxjs';
+import {Observable} from 'rxjs';
 import {map} from 'rxjs/operators';
 import {Router} from '@angular/router';
 
@@ -71,6 +71,10 @@ export class Authservice {
     return this.http.post(`/users/register`, user);
   }
 
+  public register2(user: TokenPayload): Observable<any> {
+    return this.http.post(`/emp/register`, user);
+  }
+
   public login(user: TokenPayload): Observable<any> {
     const base = this.http.post(`/users/login`, user);
 
@@ -84,8 +88,25 @@ export class Authservice {
     return request;
   }
 
+  public login2(user: TokenPayload): Observable<any> {
+    const base = this.http.post(`/emp/login`, user);
+
+    const request = base.pipe(
+      map((data: TokenResponse) => {
+        if (data.token) {
+          this.saveToken(data.token);
+        }
+      })
+    );
+    return request;
+  }
+
   public profile(id): Observable<any> {
     return this.http.get(`/users/getusers/${id}`);
+  }
+
+  public profile2(id): Observable<any> {
+    return this.http.get(`/emp/getuser/${id}`);
   }
 
   public logout(): void {

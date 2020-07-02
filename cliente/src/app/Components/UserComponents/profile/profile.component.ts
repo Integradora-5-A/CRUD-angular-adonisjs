@@ -1,5 +1,5 @@
 import {Component, OnInit} from '@angular/core';
-import {Authservice, UserDetails} from "../../../services/authservice.service";
+import {Authservice, UserDetails} from '../../../services/authservice.service';
 
 @Component({
   selector: 'app-profile',
@@ -7,20 +7,20 @@ import {Authservice, UserDetails} from "../../../services/authservice.service";
   styleUrls: ['./profile.component.css']
 })
 export class ProfileComponent implements OnInit {
-  details: UserDetails
+  details: UserDetails;
 
   constructor(private auth: Authservice) {
   }
 
   ngOnInit(): void {
-    const current = this.auth.getUserDetails()
-    this.auth.profile(current.uid).subscribe(
+    const current = this.auth.getUserDetails();
+    this.auth.profile2(current.uid).subscribe(
       user => {
-        this.details = user
+        this.details = user;
       },
       error => {
-        console.error(error)
+        console.error(error);
       }
-    )
+    );
   }
 }

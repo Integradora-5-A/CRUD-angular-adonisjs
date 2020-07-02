@@ -2,6 +2,7 @@
 
   <a class="navbar-brand" href="">
     <img src="assets/img/cat_icon.jpg"  width="30" height="30" alt="">
+    <span> APP CRUD</span>
   </a>
 
   <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent"
@@ -16,6 +17,8 @@
       </li>
       <li class="nav-item" routerLinkActive="active" *ngIf="auth.isLoaggedIn()">
         <a class="nav-link" [routerLink]="['crud']">CRUD</a>
+      </li><li class="nav-item" routerLinkActive="active" *ngIf="auth.isLoaggedIn()">
+        <a class="nav-link" [routerLink]="['crudemp']">CRUD MYSQL</a>
       </li>
     </ul>
     <ul class="navbar-nav my-2 my-lg-0">

@@ -3,8 +3,18 @@
     "target": "http://127.0.0.1:3333",
     "secure": false
   },
-  "/api/*": {
+  "/api/task": {
     "target": "http://127.0.0.1:3333",
+    "secure": false,
+    "logLevel": "debug"
+  },
+  "/api/employees": {
+    "target": "http://127.0.0.1:3000",
+    "secure": false,
+    "logLevel": "debug"
+  },
+  "/emp": {
+    "target": "http://127.0.0.1:3000",
     "secure": false,
     "logLevel": "debug"
   }

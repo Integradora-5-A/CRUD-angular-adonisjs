@@ -23,7 +23,7 @@ Route.group(() => {
 }).prefix('users')
 
 //
-Route.get('api/tasks', 'TaskController.index').middleware('auth')
+Route.get('api/task/all', 'TaskController.index').middleware('auth')
 Route.post('api/task', 'TaskController.store').middleware('auth')
 Route.get('api/task', 'TaskController.index').middleware('auth')
 Route.get('api/task/:id', 'TaskController.show').middleware('auth')

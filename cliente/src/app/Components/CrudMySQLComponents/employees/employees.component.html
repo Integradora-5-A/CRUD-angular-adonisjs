@@ -1,0 +1,63 @@
+<div class="row justify-content-center">
+  <div class="col-md-6">
+    <div><h1 class="display-4 text-center">Employee's Register</h1></div>
+    <hr>
+
+    <form
+      (submit)="add(first_name.value, Last_name.value, Position.value); first_name.value=''; Last_name.value=''; Position.value=''"
+      class="form">
+      <div class="form-inline form-group">
+        <input #first_name class="form-control mr-4" placeholder="First Name">
+        <input #Last_name class="form-control mr-4" placeholder="Last Name">
+        <input #Position class="form-control" placeholder="Position">
+      </div>
+      <input type="submit" value="SUBMIT" class="btn btn-success btn-lg btn-block">
+    </form>
+
+    <table class="table">
+      <tr>
+        <td>
+          <span>First Name</span>
+        </td>
+        <td>
+          <span>Last Name</span>
+        </td>
+        <td>
+          <span>Position</span>
+        </td>
+      </tr>
+      <tr *ngFor="let employee of employees">
+        <td class="text-left">
+          <a (click)="edit(employee)">
+            <span *ngIf="employee!==editEmployee">{{employee.first_name}}</span>
+            <input *ngIf="employee===editEmployee" [(ngModel)]="employee.first_name" (blur)="update()"
+                   (keyup.enter)="update()"/>
+          </a>
+        </td>
+        <td>
+          <a (click)="edit(employee)">
+            <span *ngIf="employee!==editEmployee">{{employee.Last_name}}</span>
+            <input *ngIf="employee===editEmployee" [(ngModel)]="employee.Last_name" (blur)="update()"
+                   (keyup.enter)="update()"/>
+          </a>
+        </td>
+        <td>
+          <a (click)="edit(employee)">
+            <span *ngIf="employee!==editEmployee">{{employee.Position}}</span>
+            <input *ngIf="employee===editEmployee" [(ngModel)]="employee.Position" (blur)="update()"
+                   (keyup.enter)="update()"/>
+          </a>
+        </td>
+        <td class="text-right">
+          <button class="btn btn-danger" (click)="delete(employee)">Delete</button>
+        </td>
+      </tr>
+    </table>
+
+    <div class="card card-body bg-ligth text-center">
+      <span class="small">Click on the iteam to edit and just click anywhere to update</span>
+    </div>
+
+  </div>
+</div>
+
